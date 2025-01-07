@@ -1,0 +1,23 @@
+spring.application.name=ApiGateway
+server.port=8300
+
+# Eureka Client Configuration
+eureka.client.service-url.defaultZone=http://localhost:8200/eureka/
+eureka.client.register-with-eureka=true
+eureka.client.fetch-registry=true
+
+# Logging level (optional for debugging)
+logging.level.org.springframework.cloud.gateway=DEBUG
+
+# Gateway Routes - Example of how routes are mapped
+spring.cloud.gateway.routes[0].id=CustomerService
+spring.cloud.gateway.routes[0].uri=lb://CustomerService
+spring.cloud.gateway.routes[0].predicates[0]=Path=/customers/**
+
+spring.cloud.gateway.routes[1].id=AccountService
+spring.cloud.gateway.routes[1].uri=lb://AccountService
+spring.cloud.gateway.routes[1].predicates[0]=Path=/accounts/**
+
+# Enable route locator caching
+spring.cloud.gateway.discovery.locator.enabled=true
+spring.cloud.gateway.discovery.locator.lower-case-service-id=true

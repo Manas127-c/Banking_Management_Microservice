@@ -1,0 +1,5 @@
+package com.banking.customer.external;
+
+public interface AccountService {
+
+}
